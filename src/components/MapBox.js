@@ -16,7 +16,7 @@ function MapBox({notes, setNotes}) {
   const notesCollectionRef = collection(db, "notes");
 
   const {currentUser} = useAuth();
-
+  
 
     const getNotes = async () => {
       const data = await getDocs(notesCollectionRef);
@@ -71,11 +71,16 @@ function MapBox({notes, setNotes}) {
       }
     }, []);
 
+
+    const roundToFive = num => {
+      return +(Math.round(num + "e+5") + "e-5");
+    }
+
     
     const handleMapClick = (e) => {
         
-        const longitude = e.lngLat.lng;
-        const latitude = e.lngLat.lat;
+        const longitude = roundToFive(e.lngLat.lng);
+        const latitude = roundToFive(e.lngLat.lat);
         setNewLong(longitude);
         setNewLat(latitude);
         setLong(longitude);
@@ -84,20 +89,15 @@ function MapBox({notes, setNotes}) {
     }
   
     return (
-    <>
+    <div className='mapbox-ui'>
       <Map
+        logoPosition='bottom-right'
         mapboxAccessToken='pk.eyJ1IjoiaGthaW50aDciLCJhIjoiY2xmb2R0bHl6MHV0bjQ0bGt4YXhqd3MydyJ9.4U_TObIu2ZNsPrPsJ6vgeQ'
-        style={{
-          height: "100vh",
-          width: "100%",
-          position: "relative",
-          borderRadius: "8px"
-
-        }}
         initialViewState={{
           longitude: long,
           latitude: lat
         }}
+        reuseMaps
         mapStyle='mapbox://styles/mapbox/streets-v12'
         onClick={handleMapClick}
         scrollZoom={false}
@@ -105,8 +105,8 @@ function MapBox({notes, setNotes}) {
       >
         <Marker longitude={long} latitude={lat} />
         <NavigationControl position='top-right' />
-        <GeolocateControl trackUserLocation showUserHeading />
-        <FullscreenControl />
+        <GeolocateControl trackUserLocation showUserHeading position='top-left'/>
+        <FullscreenControl position='bottom-left'/>
         {notes &&
           notes.map(({id, long, lat, remark, createdBy}) => (
             <Popup key={id} longitude={long} latitude={lat} closeButton={false} closeOnClick={false} >
@@ -115,20 +115,21 @@ function MapBox({notes, setNotes}) {
             </Popup>
           ))
         }
+        
       </Map>
-      <div style={{position:"absolute", top:"100px", left:"30px", backgroundColor:"white", padding: "8px", borderRadius:"4px", opacity:"0.75"}}>
-        <p>Tap map to update coordinates</p>
+      <div className='coords'>
         <p>Lat: {newLat}</p>
         <p>Long: {newLong}</p>
       </div>
       <form onSubmit={createNote}>
-        <div style={{display:"flex", alignItems:"center", gap:"5px"}}>
+        <div>
           <input type='text' placeholder='Add note' onChange={(e) => setNewRemark(e.target.value)}/>
-          <button>Add Remark</button>
+          <button>Add</button>
         </div>
-        {errorMessage && <p>{errorMessage}</p>}
       </form>
-    </>
+      {errorMessage && <p className='error-msg'>{errorMessage}</p>}
+      
+    </div>
   );
 }
 

@@ -1,54 +1,6 @@
 import React, {useState} from "react";
 import {db} from '../firebase-config';
 import {doc, updateDoc, deleteDoc} from 'firebase/firestore';
-import styled from "styled-components";
-
-const Container = styled.div`
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 750px;
-    margin: 0 auto;
-`;
-
-const Title = styled.h2`
-    font-size: 20px;
-    font-weight: 400;
-`;
-
-
-const ListContainer = styled.div`
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-`;
-
-const RemarkCard = styled.div`
-    padding: 12px;
-    border: 2px solid black;
-    border-radius: 4px;
-`;
-
-const Remark = styled.p`
-    margin: 0;
-    font-size: 22px;
-    font-weight: 500;
-`;
-
-const RemarkContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`;
-
-const RemarkControls = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-`;
 
 
 export default function NotesList({notes, getNotes}){
@@ -98,26 +50,25 @@ export default function NotesList({notes, getNotes}){
 
     
     return(
-        <Container>
-            <Title>Remarks</Title>
+        <div className="notes-list">
             <input type="text" placeholder='Search for remarks' onChange={(e) => setQuery(e.target.value)}/>
-            <ListContainer>    
+            <ul>    
                 {filteredItems?.map(({id, lat, long, createdBy, remark}) => (
-                    <RemarkCard key={id}>
-                        <RemarkContainer>
-                            <Remark>{remark}</Remark>
+                    <li key={id}>
+                        <div>
+                            <p>{remark}</p>
                             <button onClick={() => deleteRemark(id)}>Delete Remark</button>
-                        </RemarkContainer>
+                        </div>
                         <p>Lat: {lat}</p>
                         <p>Long: {long}</p>
                         <p>CreatedBy: {createdBy}</p>
-                        <RemarkControls>
+                        <div>
                             <input type="text" placeholder="edit remark" onChange={(e) => setNewUpdatedRemark(e.target.value)} />
                             <button onClick={() => updateRemark(id)}>Edit Remark</button>
-                        </RemarkControls>
-                    </RemarkCard>
+                        </div>
+                    </li>
                 ))}
-            </ListContainer>
-        </Container>
+            </ul>
+        </div>
     )
 };

@@ -3,26 +3,10 @@ import styled from 'styled-components';
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom';
 
-const Button = styled.button`
-    background-color: #00337C;
-    border: none;
-    color: white;
-    padding: 8px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 4px;
-`;
-
-const RightContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
 
 export default function Header() {
 
-  const {currentUser, logout} = useAuth();
+  const {logout} = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async e => {
@@ -36,13 +20,10 @@ export default function Header() {
   }
 
   return (
-    <header>
+    <div className='header'>
         <p>LandmarkRemark</p>
-        <RightContainer>
-          <p>{currentUser.email}</p>
-          <Button onClick={handleLogout}>Log Out</Button>
-        </RightContainer>
-    </header>
+        <button onClick={handleLogout}>Log Out</button>
+    </div>
   )
 }
 

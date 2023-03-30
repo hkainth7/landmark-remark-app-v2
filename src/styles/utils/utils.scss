@@ -1,0 +1,55 @@
+//variables 
+
+$bg-color: #272643;
+$error-color: #ff3333;
+$border: 2px solid #2c698d;
+
+//mixins 
+
+@mixin button-style {
+    border: none;
+    background-color: $bg-color;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 2px;
+}
+
+@mixin p-style {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+@mixin input-style {
+    padding: 8px;
+    font-size: 16px;
+    outline: none;
+    border: $border;
+    flex: 1;
+}
+
+@mixin display-flex-row {
+    display: flex;
+    align-items: center;
+    
+}
+
+@mixin display-flex-column {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+@mixin error-style {
+    background-color: $error-color;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 2px;
+}
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }

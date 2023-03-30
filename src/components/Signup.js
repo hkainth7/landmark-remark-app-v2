@@ -1,61 +1,6 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import styled from "styled-components";
-
-const Container = styled.div`
-    padding: 20px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-`;
-
-const Form = styled.form`
-    width: 100%;
-    font-size: 30px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-`;
-
-const Title = styled.p`
-    margin: 0;
-    font-size: 30px;
-`;
-
-const Input = styled.input`
-    width: 50vw;
-    outline: none;
-    background-color: white;
-    border: 2px solid black;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 20px;
-`;
-
-const Button = styled.button`
-    border: none;
-    background-color: #00337C;
-    color: white;
-    padding: 10px;
-    width: 20vw;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 250ms ease-in-out;
-    &:hover{
-        transform: scale(1.1);
-    }
-`;
-
-const ErrorMessage = styled.p`
-    margin: 0;
-    font-size: 16px;
-`;
 
 export default function Signup(){
 
@@ -93,19 +38,19 @@ export default function Signup(){
     }
 
     return(
-        <Container>
-            <Form onSubmit={handleSubmit}>
-                <Title>Sign Up</Title>
-                <Input type="text" placeholder='email' onChange={(e) => setEmail(e.target.value)} required />
-                <Input type="password" placeholder='password' onChange={(e) => setPassword(e.target.value)} required />
-                <Button disabled={loading}>Sign Up</Button>
-                {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
-                {pwdError && <ErrorMessage>{pwdError}</ErrorMessage>}
+        <div>
+            <form onSubmit={handleSubmit}>
+                <h1>Sign Up</h1>
+                <input type="text" placeholder='email' onChange={(e) => setEmail(e.target.value)} required />
+                <input type="password" placeholder='password' onChange={(e) => setPassword(e.target.value)} required />
+                <button disabled={loading}>Sign Up</button>
+                {emailError && <p>{emailError}</p>}
+                {pwdError && <p>{pwdError}</p>}
                 {successMsg && <p>{successMsg}</p>}
-            </Form>
+            </form>
             <div>
                 Already have an account? <Link to="/">Login</Link>
             </div>
-        </Container>
+        </div>
     )
 };
