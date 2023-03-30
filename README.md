@@ -1,4 +1,4 @@
-# landmark-remark-app
+# landmark-remark-app-v2
 
  Landmark remark app allows you to select a point on the map and attach a remark to the selected coordinates. The remarks are saved in the Firebase Firestore dB and then retrieved and displayed as a list. Users are able to view remarks created by other users.
  
@@ -20,10 +20,12 @@
  - React-map-gl / mapbox-gl -> implementation time **45mins**
  - Firebase Firestore -> implementation time **1.5hr**
  - Firebase Authentication -> implementation time **1.5hr** 
- - Styled Components -> **1hr** -> I contemplated using Tailwind. I like Tailwind's approach to using a mobile first approach. I opted for Styled components because usage and implementation is easier 
+ - Styled Components -> **1hr** -> I contemplated using Tailwind. I like Tailwind's approach to using a mobile first approach. I opted for Styled components because usage and implementation is easier  (REMOVED)
  - Research/reading docs/youtube videos/referencing school material -> **4hr** 
  - Refactoring Code - **2hr**
  - Debugging - **2hr**
+ - SCSS
+ - MUI ICONS
 
  # Bugs/Missing functionality/things I want to improve:
 
