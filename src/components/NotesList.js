@@ -7,7 +7,7 @@ const Container = styled.div`
     padding: 10px;
     display: flex;
     flex-direction: column;
-    width: 70vw;
+    width: 100%;
     max-width: 750px;
     margin: 0 auto;
 `;
@@ -17,15 +17,6 @@ const Title = styled.h2`
     font-weight: 400;
 `;
 
-const Input = styled.input`
-    flex: 1;
-    outline: none;
-    background-color: white;
-    border: 2px solid black;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 16px;
-`;
 
 const ListContainer = styled.div`
     margin-top: 20px;
@@ -46,16 +37,6 @@ const Remark = styled.p`
     font-weight: 500;
 `;
 
-const Button = styled.button`
-    background-color: #00337C;
-    border: none;
-    color: white;
-    padding: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-`;
-
 const RemarkContainer = styled.div`
     display: flex;
     align-items: center;
@@ -68,7 +49,6 @@ const RemarkControls = styled.div`
     justify-content: space-between;
     gap: 10px;
 `;
-
 
 
 export default function NotesList({notes, getNotes}){
@@ -120,20 +100,20 @@ export default function NotesList({notes, getNotes}){
     return(
         <Container>
             <Title>Remarks</Title>
-            <Input type="text" placeholder='Search for remarks' onChange={(e) => setQuery(e.target.value)}/>
+            <input type="text" placeholder='Search for remarks' onChange={(e) => setQuery(e.target.value)}/>
             <ListContainer>    
                 {filteredItems?.map(({id, lat, long, createdBy, remark}) => (
                     <RemarkCard key={id}>
                         <RemarkContainer>
                             <Remark>{remark}</Remark>
-                            <Button onClick={() => deleteRemark(id)}>Delete Remark</Button>
+                            <button onClick={() => deleteRemark(id)}>Delete Remark</button>
                         </RemarkContainer>
-                            <p>Lat: {lat}</p>
-                            <p>Long: {long}</p>
-                            <p>CreatedBy: {createdBy}</p>
+                        <p>Lat: {lat}</p>
+                        <p>Long: {long}</p>
+                        <p>CreatedBy: {createdBy}</p>
                         <RemarkControls>
-                            <Input type="text" placeholder="edit remark" onChange={(e) => setNewUpdatedRemark(e.target.value)} />
-                            <Button onClick={() => updateRemark(id)}>Edit Remark</Button>
+                            <input type="text" placeholder="edit remark" onChange={(e) => setNewUpdatedRemark(e.target.value)} />
+                            <button onClick={() => updateRemark(id)}>Edit Remark</button>
                         </RemarkControls>
                     </RemarkCard>
                 ))}

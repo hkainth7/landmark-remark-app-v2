@@ -4,46 +4,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import {db} from '../firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
 import { useAuth } from "../contexts/AuthContext";
-import styled from 'styled-components';
-
-const Form = styled.form`
-    
-    position: absolute;
-    bottom: 20px;
-    font-size: 30px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-top: 20px;
-`;
-
-const Input = styled.input`
-    flex: 1;
-    outline: none;
-    background-color: white;
-    border: 2px solid black;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 20px;
-    max-width: 500px;
-`;
-
-const Button = styled.button`
-    border: none;
-    background-color: #00337C;
-    color: white;
-    padding: 12px;
-    max-width: 300px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 250ms ease-in-out;
-    &:hover{
-        transform: scale(1.02);
-    }
-`;
 
 function MapBox({notes, setNotes}) {
 
@@ -141,9 +101,10 @@ function MapBox({notes, setNotes}) {
         mapStyle='mapbox://styles/mapbox/streets-v12'
         onClick={handleMapClick}
         scrollZoom={false}
+        attributionControl={false}
       >
         <Marker longitude={long} latitude={lat} />
-        <NavigationControl position='bottom-right' />
+        <NavigationControl position='top-right' />
         <GeolocateControl trackUserLocation showUserHeading />
         <FullscreenControl />
         {notes &&
@@ -160,13 +121,13 @@ function MapBox({notes, setNotes}) {
         <p>Lat: {newLat}</p>
         <p>Long: {newLong}</p>
       </div>
-      <Form onSubmit={createNote}>
+      <form onSubmit={createNote}>
         <div style={{display:"flex", alignItems:"center", gap:"5px"}}>
-          <Input type='text' placeholder='Add note' onChange={(e) => setNewRemark(e.target.value)}/>
-          <Button>Add Remark</Button>
+          <input type='text' placeholder='Add note' onChange={(e) => setNewRemark(e.target.value)}/>
+          <button>Add Remark</button>
         </div>
-        {errorMessage && <p style={{fontSize:"16px", margin:"0"}} >{errorMessage}</p>}
-      </Form>
+        {errorMessage && <p>{errorMessage}</p>}
+      </form>
     </>
   );
 }

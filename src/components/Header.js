@@ -3,19 +3,6 @@ import styled from 'styled-components';
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom';
 
-
-const HeaderContainer = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100vw;
-    padding: 10px;
-`;
-
-const Title = styled.p`
-  font-size: 14px;
-`;
-
 const Button = styled.button`
     background-color: #00337C;
     border: none;
@@ -28,13 +15,10 @@ const Button = styled.button`
 
 const RightContainer = styled.div`
   display: flex;
+  align-items: center;
   gap: 10px;
 `;
 
-const UserName = styled.p`
-  font-size: 12px;
-  font-weight: 300;
-`
 
 export default function Header() {
 
@@ -52,13 +36,13 @@ export default function Header() {
   }
 
   return (
-    <HeaderContainer>
-        <Title>LandmarkRemark</Title>
+    <header>
+        <p>LandmarkRemark</p>
         <RightContainer>
-          <UserName>{currentUser.email}</UserName>
+          <p>{currentUser.email}</p>
           <Button onClick={handleLogout}>Log Out</Button>
         </RightContainer>
-    </HeaderContainer>
+    </header>
   )
 }
 
