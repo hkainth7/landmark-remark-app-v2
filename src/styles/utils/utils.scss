@@ -1,20 +1,13 @@
 //variables 
 
-$bg-color: #272643;
+$button-bg-color: #272643;
 $error-color: #ff3333;
 $border: 2px solid #2c698d;
+$bg-color: #e3f6f5;
 
 //mixins 
 
-@mixin button-style {
-    border: none;
-    background-color: $bg-color;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 2px;
-}
-
-@mixin p-style {
+@mixin p-style() {
     margin: 0;
     padding: 0;
     font-size: 12px;
@@ -26,6 +19,7 @@ $border: 2px solid #2c698d;
     outline: none;
     border: $border;
     flex: 1;
+    border-radius: 2px;
 }
 
 @mixin display-flex-row {
@@ -52,4 +46,5 @@ $border: 2px solid #2c698d;
     margin: 0;
     padding: 0;
     list-style: none;
+    width: 100%;
   }

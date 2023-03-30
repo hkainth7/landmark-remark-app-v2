@@ -1,7 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom';
+
 
 
 export default function Header() {
@@ -14,15 +15,15 @@ export default function Header() {
     try {
       await logout();
       navigate('/')
-      } catch (error) {
-          console.log(error.message);
-      }
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
     <div className='header'>
         <p>LandmarkRemark</p>
-        <button onClick={handleLogout}>Log Out</button>
+        <LogoutIcon sx={{fontSize: "26px"}} onClick={handleLogout}/>
     </div>
   )
 }

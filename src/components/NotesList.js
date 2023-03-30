@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {db} from '../firebase-config';
 import {doc, updateDoc, deleteDoc} from 'firebase/firestore';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function NotesList({notes, getNotes}){
 
@@ -45,6 +46,7 @@ export default function NotesList({notes, getNotes}){
             await getNotes();
         } catch (error) {
             console.log(error.message);
+        
         }
     }
 
@@ -57,15 +59,17 @@ export default function NotesList({notes, getNotes}){
                     <li key={id}>
                         <div>
                             <p>{remark}</p>
-                            <button onClick={() => deleteRemark(id)}>Delete Remark</button>
+                            <DeleteIcon onClick={() =>  deleteRemark(id)} className="delete-icon"/>
                         </div>
-                        <p>Lat: {lat}</p>
-                        <p>Long: {long}</p>
-                        <p>CreatedBy: {createdBy}</p>
-                        <div>
+                        <div className="info">
+                            <p>Lat: {lat}</p>
+                            <p>Long: {long}</p>
+                        </div>
+                        <div className="edit-container">
                             <input type="text" placeholder="edit remark" onChange={(e) => setNewUpdatedRemark(e.target.value)} />
-                            <button onClick={() => updateRemark(id)}>Edit Remark</button>
+                            <EditIcon className="edit-icon" onClick={() => updateRemark(id)}>Edit Remark</EditIcon>
                         </div>
+                        <p className="created-by">CreatedBy: {createdBy}</p>
                     </li>
                 ))}
             </ul>

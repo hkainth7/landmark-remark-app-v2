@@ -1,9 +1,5 @@
 @import './utils/utils.scss';
 
-button {
-    @include button-style;
-}
-
 p {
     @include p-style;
 }
@@ -36,7 +32,7 @@ input {
         @include display-flex-row;
         justify-content: space-evenly;
         p {
-            background-color: #e3f6f5;
+            background-color: $bg-color;
             padding: 10px;
             border-radius: 4px;
             opacity: 0.7;
@@ -75,7 +71,7 @@ input {
 
 .notes-list {
 
-    padding: 30px;
+    padding: 20px;
     @include display-flex-column;
 
     input {
@@ -84,7 +80,61 @@ input {
 
 
     ul {
+        @include display-flex-column;
+        gap: 20px;
         @include reset-list;
         margin-top: 30px;
+        
     }
+
+    li {
+
+        padding: 10px 14px;
+        border: $border;
+        border-radius: 2px;
+        width: 100%;
+        div {
+            @include display-flex-row;
+            justify-content: space-between;
+            
+            .delete-icon {
+                font-size: 30px;
+                color: red;
+            }
+
+            p {
+                font-size: 20px;
+            }
+        }
+
+        .info{
+            @include display-flex-column;
+            align-items: flex-start;
+            padding: 10px;
+            gap: 5px;
+            p{
+                font-size: 16px;
+            }
+
+        }
+
+        .edit-container {
+
+            .edit-icon{
+                font-size: 26px;
+            }
+
+            input {
+                flex: none;
+                width: 80%;
+            }
+        }
+
+        .created-by {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+    }
+
 }
