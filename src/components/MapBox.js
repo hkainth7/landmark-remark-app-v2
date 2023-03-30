@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const Form = styled.form`
     
     position: absolute;
-    bottom: 100px;
+    bottom: 20px;
     font-size: 30px;
     text-align: center;
     display: flex;
@@ -140,6 +140,7 @@ function MapBox({notes, setNotes}) {
         }}
         mapStyle='mapbox://styles/mapbox/streets-v12'
         onClick={handleMapClick}
+        scrollZoom={false}
       >
         <Marker longitude={long} latitude={lat} />
         <NavigationControl position='bottom-right' />
