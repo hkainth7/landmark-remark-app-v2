@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import MapBox from './MapBox';
 import NotesList from './NotesList';
 import Header from './Header';
 import {db} from '../firebase-config';
-import {collection, getDocs, addDoc} from 'firebase/firestore';
+import {collection, getDocs} from 'firebase/firestore';
 
 
 
@@ -22,7 +22,7 @@ function LandmarkRemark() {
   return (
     <div>
       <Header />
-      <MapBox notes={notes} setNotes={setNotes}/>
+      <MapBox notes={notes} setNotes={setNotes} getNotes={getNotes}/>
       <NotesList notes={notes} getNotes={getNotes} />
     </div>
   );

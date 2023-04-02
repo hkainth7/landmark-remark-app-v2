@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import Map, {Marker, NavigationControl, GeolocateControl, FullscreenControl, Popup} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {db} from '../firebase-config';
-import {collection, getDocs, addDoc} from 'firebase/firestore';
+import {collection, addDoc} from 'firebase/firestore';
 import { useAuth } from "../contexts/AuthContext";
 
-function MapBox({notes, setNotes}) {
+function MapBox({notes, setNotes, getNotes}) {
 
   const [newLong, setNewLong] = useState("");
   const [newLat, setNewLat] = useState("");
@@ -16,12 +16,6 @@ function MapBox({notes, setNotes}) {
   const notesCollectionRef = collection(db, "notes");
 
   const {currentUser} = useAuth();
-  
-
-    const getNotes = async () => {
-      const data = await getDocs(notesCollectionRef);
-      setNotes(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-    }
 
     const createNote = async (e) => {
       e.preventDefault();

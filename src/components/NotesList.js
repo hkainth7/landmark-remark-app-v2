@@ -13,7 +13,7 @@ export default function NotesList({notes, getNotes}){
         if(!query){
             return items;
         }
-        return items.filter((item) => item.remark.includes(query));
+        return items.filter((item) => item.remark.toLowerCase().includes(query.toLowerCase()));
     }
 
     const filteredItems = getFilteredItems(query, notes);
